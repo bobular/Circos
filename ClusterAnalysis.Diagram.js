@@ -584,6 +584,24 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             .append("g")
                 .attr("transform",
                       "translate(" + margin.left + "," + margin.top + ")");
+        
+        var maxPValue = -Infinity
+        
+        // Get the max pValueNegLog10 value so that it can be assigned to the
+        // 0 pvalues.
+        for ( var i = 0, ilen = values.length; i < ilen; i++ ) {
+            if ( maxPValue < values[i].pValueNegLog10 ) {
+                maxPValue = values[i].pValueNegLog10;
+            }
+        }
+        
+        // Assign the max pvalue + something to the 0 pvalues because otherwise
+        // they show up at the bottom of the volcano plot instead of the top.
+        for ( var i = 0, ilen = values.length; i < ilen; i++ ) {
+            if ( values[i].pValueNegLog10 === null ) {
+                values[i].pValueNegLog10 = (maxPValue + 1/100 * maxPValue);
+            }
+        }
 
         // Get the data
         var data = values,
@@ -593,7 +611,7 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             maxXCoord = d3.max(data, function (d) {return d.foldChange}),
             minXCoord = d3.min(data, function (d) { return d.foldChange}),
             YSpan = (maxYCoord - minYCoord) / 100;
-
+        
         // Scale the range of the data
         x.domain([minXCoord - dotRadius / 100, maxXCoord + dotRadius / 100]);
         y.domain([minYCoord - YSpan, maxYCoord + YSpan]);
@@ -629,7 +647,7 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
                         .duration(200)
                         .style("opacity", .9);
 
-                    hoverDiv.html(conditionName + '<br/>' + pvalue)
+                    hoverDiv.html(conditionName)
                         .style("left", xcoord + "px")
                         .style("top", ycoord + "px");
                 });
@@ -746,10 +764,10 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             .orient("left");
 
         svg.append("text")
+            .attr('class', 'violin-header')
             .attr("x", margin.left + boxWidth)
             .attr("y", margin.top/2)
             .style("text-anchor", "middle")
-            .style("font-size", 10)
             .text("Evolutionary Rate");
 
         svg.append("text")
@@ -804,10 +822,10 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             .tickSize(6, 0);
 
         svg.append("text")
+            .attr('class', 'violin-header')
             .attr("x", margin.left + boxWidth)
             .attr("y", margin.top/2)
             .style("text-anchor", "middle")
-            .style("font-size", 10)
             .text("Duplicability");
 
         svg.append("text")
@@ -860,10 +878,10 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             .orient("left");
 
         svg.append("text")
+            .attr('class', 'violin-header')
             .attr("x", margin.left + boxWidth)
             .attr("y", margin.top/2)
             .style("text-anchor", "middle")
-            .style("font-size", 10)
             .text("Universality");
 
         svg.append("text")
@@ -917,10 +935,10 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             .orient("left");
 
         svg.append("text")
+            .attr('class', 'violin-header')
             .attr("x", margin.left + boxWidth)
             .attr("y", margin.top/2)
             .style("text-anchor", "middle")
-            .style("font-size", 10)
             .text("Paralogue Variation");
 
         svg.append("text")
@@ -974,10 +992,10 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
             .orient("left");
 
         svg.append("text")
+            .attr('class', 'violin-header')
             .attr("x", margin.left + boxWidth)
             .attr("y", margin.top/2)
             .style("text-anchor", "middle")
-            .style("font-size", 10)
             .text("Single copy genes ratio");
 
         svg.append("text")

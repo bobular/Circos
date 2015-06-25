@@ -231,3 +231,7 @@ div.tooltip {
     text-rendering: geometricPrecision !important;
 
 }
+
+.violin-header {
+    font-size: 10px;
+}
