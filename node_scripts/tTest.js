@@ -1,4 +1,5 @@
 var student = require( 'distributions' ).Studentt; // Necessary to get the pdf fot the t-test
+var Math = require('mathjs');
 //var rstats = require( 'rstats' ); // Necessary to get the pdf fot the t-test
 
 var calculateExpressionValues = function (clusters) {

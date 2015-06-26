@@ -1,7 +1,7 @@
 var http = require( 'http' );
 var request = require( 'request' );
 var url = require( 'url' );
-var rstats = require( 'rstats' ); // If we use R
+// var rstats = require( 'rstats' ); // If we use R
 var go = require( './hypergeometric' ); // If we use nodejs
 var tTest = require( './tTest' ); // Rename TODO
 
@@ -26,11 +26,12 @@ var server = http.createServer( function( request, response ) {
 		// this is the callback, 1st arg result
 		// here result will be matrix (see below)
 	 	response.writeHead( 200, {"Content-Type": "application/json"} );
-		response.end( jsonpCallback + '(' + JSON.stringify( result ) + ');' );
+		response.end( JSON.stringify( result ) );
+//		response.end( jsonpCallback + '(' + JSON.stringify( result ) + ');' );
 	} );
 } );
 
-server.listen( 8081 );
+server.listen( 9091 );
 
 function getData( inputData, callback ) {
 	console.log( 'inside getData' );
