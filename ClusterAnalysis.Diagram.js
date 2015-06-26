@@ -436,15 +436,16 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
                  *   [2]: Info from Ajax. Useless.
                  * So we always have to the 0th element of the response.
                  */
-               console.log(v1i, v2i)
+		console.log("v1i next:");
+		console.log(v1i);
                 var clusterBuckets = v1i[0].facets,
                     genomeBuckets = v2i[0].facets;
                 showInfoPanelOrtho(clusterBuckets, genomeBuckets);
             });
         } else {
             // This is the t-test request
-            promise1 = $.ajax( 'http://localhost:8081', {
-                dataType: 'jsonp',
+            promise1 = $.ajax( '/circos-data', {
+                dataType: 'json',
                 data: {
                     'analysisId': analysis_id,
                     'clusterId': clusterId,
@@ -458,8 +459,8 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
 
         }
         // And this is the go term enrichment.
-        promise3 = $.ajax( 'http://localhost:8081',  {
-            dataType: 'jsonp',
+        promise3 = $.ajax( '/circos-data',  {
+            dataType: 'json',
             data: {
                 'analysisId': analysis_id,
                 'clusterId': clusterId,
@@ -540,9 +541,8 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
         }
 
         return $.ajax({
-            url: 'http://localhost:8983/solr/circos/query',
-            dataType: 'jsonp',
-            jsonp: 'json.wrf',
+            url: '/solr/ninjadata/select',
+	    dataType: "json",
             data: data
         } );
     }
@@ -1038,10 +1038,8 @@ ClusterAnalysis.Diagram.prototype.drawDiagram = function() {
         }
 
         return $.ajax({
-            url: 'http://localhost:8983/solr/circos/query',
-            method: "POST",
-            dataType: 'jsonp',
-            jsonp: 'json.wrf',
+            url: '/solr/ninjadata/select',
+            dataType: 'json',
             data: data
         } );
     }

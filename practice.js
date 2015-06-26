@@ -2,16 +2,15 @@ function getData( field, value, filter ) {
 
 	var data = {
 		'q'		: field + ':' + value,
-		'fq'	: '*cluster*',
+		'fq'	: 'analysis_type:clustering',
 		'fl'	: filter,
 		'wt'	: 'json',
 		'indent': 'true',
 		'rows' 	: '20000'
 	};
 
-	return $.ajax( 'http://localhost:8983/solr/circos/select', {
-		dataType: 'jsonp',
-		jsonp: 'json.wrf',
+	return $.ajax( '/solr/ninjadata/select', {
+		dataType: 'json',
 		data: data
 	} );
 
@@ -49,8 +48,8 @@ function showOptions( species ) {
 
 function makeCircos( chosenExpressionOption, chosenOrthoOption ) {
 
-	var promise = $.ajax( 'http://localhost:8081',  {
-		dataType: 'jsonp',
+	var promise = $.ajax( '/circos-data',  {
+		dataType: 'json',
 		data: {
 			value: '('
 				+ chosenExpressionOption

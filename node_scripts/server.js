@@ -52,7 +52,7 @@ handlers.draw = function( inputData, callback ) {
 
 	// Make the request and, if successful, make matrix and calculate chi squared
 	request( {
-		url: 'http://localhost:8983/solr/circos/select',
+		url: 'http://localhost:8983/solr/ninjadata/select',
 		json: true,
 		qs: data
 		},
@@ -147,7 +147,7 @@ handlers.goTerms = function( inputData, callback ) {
 
 	// Make options for the request
 	var options = {
-		url: 'http://localhost:8983/solr/circos/select',
+		url: 'http://localhost:8983/solr/ninjadata/select',
 		json: true,
 		qs: data
 	};
@@ -253,7 +253,7 @@ handlers.goTerms = function( inputData, callback ) {
 
 					// Make options for the request
 					var options = {
-						url: 'http://localhost:8983/solr/circos/select',
+						url: 'http://localhost:8983/solr/ninjadata/select',
 						json: true,
 						qs: data
 					};
@@ -317,7 +317,7 @@ handlers.tTest = function (inputData, callback) {
     
     // Make options for the request
 	var options = {
-		url: 'http://localhost:8983/solr/circos/select',
+		url: 'http://localhost:8983/solr/ninjadata/select',
 		json: true,
 		qs: data
 	};

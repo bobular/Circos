@@ -50,10 +50,10 @@ var PostToSolr = function (query, filter, nofRows, facet) {
     console.log(data);
 
     return $.ajax({
-        url         : 'http://localhost:8983/solr/circos/query',
-        method      : 'POST',
-        datatype    : 'jsonp',
-        jsonp       : 'json.wrf',
+        url         : '/solr/ninjadata/query',
+//        method      : 'POST',
+//        datatype    : 'jsonp',
+//        jsonp       : 'json.wrf',
         data        : data
     });
     

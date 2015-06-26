@@ -34,7 +34,7 @@ var data = {
 
 // Make options for the request
 var options = {
-	url: 'http://localhost:8983/solr/circos/select',
+	url: 'http://localhost:8983/solr/ninjadata/select',
 	json: true,
 	qs: data
 };
@@ -134,7 +134,7 @@ request( options, function( error, response, body ) {
 
 				// Make options for the request
 				var options = {
-					url: 'http://localhost:8983/solr/circos/select',
+					url: 'http://localhost:8983/solr/ninjadata/select',
 					json: true,
 					qs: data
 				};

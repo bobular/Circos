@@ -11,9 +11,9 @@ function makeDictionary( value ) {
 			'rows' 	: '20000'
 		};
 
-		return $.ajax( 'http://localhost:8983/solr/circos/select', {
-			dataType: 'jsonp',
-			jsonp: 'json.wrf',
+		return $.ajax( '/solr/ninjadata/select', {
+			dataType: 'json',
+//			jsonp: 'json.wrf',
 			data: data
 		} );
 
