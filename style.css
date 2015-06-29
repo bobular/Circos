@@ -65,6 +65,7 @@
 
 .popup-container {
     position: absolute;
+    left: 5%;
     top: 10px;
     width: 90%;
     min-width: 970px;
